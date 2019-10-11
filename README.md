@@ -21,11 +21,13 @@ Finally, once I had a cipher and two lists of 20000 words I could create an encr
 **Setup:** The first step after reading in the files is to create a cipher_dict. This cipher_dict is, predictably, the opposite of the encrypting cipher_dict. It takes in a symbol and outputs an english word. The cipher.json file we read in determines which symbols get paired with which words. Combining all these symbol:word pairs gives us the cipher_dict.
 **Process:** Decrypting is a little more complicated than encrypting. First-of-all, each line is a long continuous string of characters so we don't know where words stop or start -- just kidding we do: each word is 6 characters long. So after splitting each line by each 6 characters we can filter out the spacebar symbols, then print out the message using the cipher_dict, making sure to put " " inbetween each word.
 
-Example:
+##### Example:
 
-    t message.txt
-Hi this is a basic encryption tool that I made this morning .
-
-$ cat message.txt
-˥˩˧˥˩˦˧˨˥˨˥˩˦˧˨˨˧˨˧˨˥˨˥˩˦˨˩˨˦˨˧˨˥˨˥˩˥˩˥˪˥˩˧˨˥˨˥˩˦˨˧˥˩˦˧˨˥˨˥˩˦˦˩˪˪˨˧˨˥˨˥˩˥˨˦˨˪˧˧˨˥˨˥˩˦˥˪˨˥˩˧˨˥˨˥˩˦˩˧˧˪˨˧˨˥˨˥˩˥˨˧˪˪˧˧˨˥˨˥˩˧˥˩˥˨˩˧˨˥˨˥˩˦˧˨˨˧˨˧˨˥˨˥˩˧˨˦˨˥˧˧˨˥˨˥˩˧˧˥˦˪˨˧˨˥˨˥˩
-
+    $ cat message.txt
+    Hi this is a basic encryption tool that I made this morning .
+    $ python3 scripts/cipher_tool.py --c cipher.json --e 20k_english.txt --s 20k_symbols.txt --m message.txt --t encrypt
+    $ cat message.txt
+    ˥˩˧˥˩˦˧˨˥˨˥˩˦˧˨˨˧˨˧˨˥˨˥˩˦˨˩˨˦˨˧˨˥˨˥˩˥˩˥˪˥˩˧˨˥˨˥˩˦˨˧˥˩˦˧˨˥˨˥˩˦˦˩˪˪˨˧˨˥˨˥˩˥˨˦˨˪˧˧˨˥˨˥˩˦˥˪˨˥˩˧˨˥˨˥˩˦˩˧˧˪˨˧˨˥˨˥˩˥˨˧˪˪˧˧˨˥˨˥˩˧˥˩˥˨˩˧˨˥˨˥˩˦˧˨˨˧˨˧˨˥˨˥˩˧˨˦˨˥˧˧˨˥˨˥˩˧˧˥˦˪˨˧˨˥˨˥˩
+    $ python3 scripts/cipher_tool.py --c cipher.json --e 20k_english.txt --s 20k_symbols.txt --m message.txt --t decrypt
+    $ cat message.txt
+    hi this is a basic encryption tool that i made to this morning .
